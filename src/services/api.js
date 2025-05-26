@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://cespi02.github.io/Cloth-Center/'; // JSON Server
+const API_BASE_URL = 'https://api.jsonbin.io/v3/b/6834da038960c979a5a1730e'; // JSON Server
 
 
 const apiRequest = async (endpoint, options = {}) => {
