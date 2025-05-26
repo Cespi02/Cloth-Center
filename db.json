@@ -1,0 +1,43 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Camiseta Básica",
+      "precio": 25.99,
+      "imagen": "/src/assets/remera.jpg",
+      "talla": "M",
+      "descripcion": "Camiseta básica de algodón 100%, perfecta para el uso diario.",
+      "material": "Algodón 100%",
+      "cuidados": "Lavar a máquina con agua fría",
+      "categoria": "Camisetas",
+      "stock": 15,
+      "colores": ["Blanco", "Negro", "Azul", "Gris"]
+    },
+    {
+      "id": 2,
+      "nombre": "Jeans Clásicos",
+      "precio": 45.99,
+      "imagen": "/src/assets/jeans.jpg",
+      "talla": "32",
+      "descripcion": "Jeans de corte clásico con ajuste perfecto.",
+      "material": "Denim 98% algodón, 2% elastano",
+      "cuidados": "Lavar del revés con agua fría",
+      "categoria": "Pantalones",
+      "stock": 0,
+      "colores": ["Azul oscuro", "Azul claro", "Negro"]
+    },
+    {
+      "id": 3,
+      "nombre": "Sudadera Comfort",
+      "precio": 35.99,
+      "imagen": "/src/assets/sudadera.jpg",
+      "talla": "L",
+      "descripcion": "Sudadera cómoda con interior afelpado.",
+      "material": "Poliéster 60%, Algodón 40%",
+      "cuidados": "Lavar a máquina, no usar lejía",
+      "categoria": "Sudaderas",
+      "stock": 3,
+      "colores": ["Rojo", "Azul marino", "Gris", "Negro"]
+    }
+  ]
+}
