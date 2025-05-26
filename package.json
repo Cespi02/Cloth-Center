@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist", 
+    "deploy": "gh-pages -d dist",
     "dev": "concurrently -n \"VITE,API\" -c \"cyan,green\" \"npm run dev:vite\" \"npm run dev:api\"",
     "dev:vite": "vite",
     "dev:api": "json-server --watch db.json --port 3000",
@@ -30,8 +30,9 @@
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
-    "json-server": "^1.0.0",
+    "json-server": "^0.17.3",
     "vite": "^6.3.5"
   }
 }
