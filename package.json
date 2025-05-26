@@ -1,9 +1,12 @@
 {
   "name": "talentotech-ecommerce",
+  "homepage": "https://cespi02.github.io/Cloth-Center/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist", 
     "dev": "concurrently -n \"VITE,API\" -c \"cyan,green\" \"npm run dev:vite\" \"npm run dev:api\"",
     "dev:vite": "vite",
     "dev:api": "json-server --watch db.json --port 3000",
