@@ -9,9 +9,9 @@ import Contacto from './components/Contacto';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import AdminDashboard from './components/AdminDashboard';
-import ProtectedRoute from './components/ProtectedRoute.jsx';
-import SpinnerDeCarga from './components/SpinnerDeCarga.jsx';
-import MensajeDeError from './components/MensajeDeError.jsx';
+import ProtectedRoute from './components/ProtectedRoute';
+import SpinnerDeCarga from './components/SpinnerDeCarga';
+import MensajeDeError from './components/MensajeDeError';
 import { getProductos, verificarConexionAPI, manejarErrorRed } from './services/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
