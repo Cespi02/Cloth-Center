@@ -26,34 +26,36 @@ function App() {
   const [busqueda, setBusqueda] = useState('');
 
   useEffect(() => {
+    console.log('App iniciada - Cargando productos...');
     cargarProductos();
   }, []);
 
-
-
   const cargarProductos = async () => {
     try {
+      console.log('Iniciando carga de productos...');
       setLoading(true);
       setError(null);
       
       const productosData = await getProductos();
+      console.log('Productos cargados exitosamente:', productosData);
       setProductos(productosData);
       
     } catch (error) {
       console.error('Error cargando productos:', error);
       setError(manejarErrorRed(error));
-      
-
     } finally {
       setLoading(false);
+      console.log('Carga de productos finalizada');
     }
   };
 
   const reintentarCarga = () => {
+    console.log('Reintentando carga de productos...');
     cargarProductos();
   };
 
   const agregarAlCarrito = (producto) => {
+    console.log('Agregando al carrito:', producto);
     setCarrito(prev => {
       const productoExistente = prev.find(item => 
         item.id === producto.id && item.talla === producto.talla
@@ -74,10 +76,12 @@ function App() {
   };
 
   const eliminarDelCarrito = (id, talla) => {
+    console.log('Eliminando del carrito:', { id, talla });
     setCarrito(prev => prev.filter(item => !(item.id === id && item.talla === talla)));
   };
 
   const toggleCarrito = () => {
+    console.log('Toggle carrito, visible:', !carritoVisible);
     setCarritoVisible(!carritoVisible);
   };
 
@@ -89,6 +93,7 @@ function App() {
   );
 
   const mostrarNotificacion = (mensaje) => {
+    console.log('Mostrando notificación:', mensaje);
     const notification = document.createElement('div');
     notification.className = 'position-fixed top-0 end-0 m-3 alert alert-success alert-dismissible fade show';
     notification.style.zIndex = '9999';
@@ -115,6 +120,13 @@ function App() {
     cantidadTotalCarrito
   };
 
+  console.log('Estado actual:', {
+    productosLength: productos.length,
+    loading,
+    error,
+    carritoItems: carrito.length
+  });
+
   return (
     <AuthProvider>
       <CarritoContext.Provider value={carritoContextValue}>
@@ -127,7 +139,6 @@ function App() {
             busqueda={busqueda}
             setBusqueda={setBusqueda}
           />
-          
           
           <main className="flex-grow-1">
             <Routes>
@@ -162,10 +173,8 @@ function App() {
               />
               
               <Route path="/contacto" element={<Contacto />} />
-              
               <Route path="/login" element={<Login />} />
               
-
               <Route 
                 path="/admin" 
                 element={
@@ -174,7 +183,6 @@ function App() {
                   </ProtectedRoute>
                 } 
               />
-              
             </Routes>
           </main>
           
