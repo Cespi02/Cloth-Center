@@ -1,5 +1,5 @@
 import React, { useState, createContext, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import ListaProductos from './components/ListaProductos';
@@ -126,89 +126,87 @@ function App() {
   return (
     <AuthProvider>
       <CarritoContext.Provider value={carritoContextValue}>
-        <Router>
-          <div className="App min-vh-100 d-flex flex-column">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-            
-            <Header 
-              cantidadCarrito={cantidadTotalCarrito} 
-              toggleCarrito={toggleCarrito}
-              busqueda={busqueda}
-              setBusqueda={setBusqueda}
-            />
-            
-            {!apiDisponible && (
-              <div className="alert alert-warning mx-3 mt-3" role="alert">
-                <span className="material-icons me-2" style={{ fontSize: '16px', verticalAlign: 'middle' }}>warning</span>
-                <strong>Modo offline:</strong> Usando datos locales. 
-                <button 
-                  className="btn btn-link p-0 ms-2" 
-                  onClick={reintentarCarga}
-                >
-                  Reintentar conexión
-                </button>
-              </div>
-            )}
-            
-            <main className="flex-grow-1">
-              <Routes>
-                <Route 
-                  path="/" 
-                  element={
-                    loading ? (
-                      <SpinnerDeCarga mensaje="Cargando productos..." />
-                    ) : error && productos.length === 0 ? (
-                      <MensajeDeError 
-                        mensaje={error} 
-                        onRetry={reintentarCarga}
-                      />
-                    ) : (
-                      <ListaProductos 
-                        productos={productosFiltrados} 
-                        agregarAlCarrito={agregarAlCarrito}
-                      />
-                    )
-                  } 
-                />
-                
-                <Route 
-                  path="/producto/:id" 
-                  element={
-                    <ProductoDetalle 
-                      productos={productos}
-                      agregarAlCarrito={agregarAlCarrito}
-                      loading={loading}
+        <div className="App min-vh-100 d-flex flex-column">
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+          
+          <Header 
+            cantidadCarrito={cantidadTotalCarrito} 
+            toggleCarrito={toggleCarrito}
+            busqueda={busqueda}
+            setBusqueda={setBusqueda}
+          />
+          
+          {!apiDisponible && (
+            <div className="alert alert-warning mx-3 mt-3" role="alert">
+              <span className="material-icons me-2" style={{ fontSize: '16px', verticalAlign: 'middle' }}>warning</span>
+              <strong>Modo offline:</strong> Usando datos locales. 
+              <button 
+                className="btn btn-link p-0 ms-2" 
+                onClick={reintentarCarga}
+              >
+                Reintentar conexión
+              </button>
+            </div>
+          )}
+          
+          <main className="flex-grow-1">
+            <Routes>
+              <Route 
+                path="/" 
+                element={
+                  loading ? (
+                    <SpinnerDeCarga mensaje="Cargando productos..." />
+                  ) : error && productos.length === 0 ? (
+                    <MensajeDeError 
+                      mensaje={error} 
+                      onRetry={reintentarCarga}
                     />
-                  } 
-                />
-                
-                <Route path="/contacto" element={<Contacto />} />
-                
-                <Route path="/login" element={<Login />} />
-                
+                  ) : (
+                    <ListaProductos 
+                      productos={productosFiltrados} 
+                      agregarAlCarrito={agregarAlCarrito}
+                    />
+                  )
+                } 
+              />
+              
+              <Route 
+                path="/producto/:id" 
+                element={
+                  <ProductoDetalle 
+                    productos={productos}
+                    agregarAlCarrito={agregarAlCarrito}
+                    loading={loading}
+                  />
+                } 
+              />
+              
+              <Route path="/contacto" element={<Contacto />} />
+              
+              <Route path="/login" element={<Login />} />
+              
 
-                <Route 
-                  path="/admin" 
-                  element={
-                    <ProtectedRoute requireRole="admin">
-                      <AdminDashboard />
-                    </ProtectedRoute>
-                  } 
-                />
-                
-              </Routes>
-            </main>
-            
-            <Footer />
-            
-            <Carrito 
-              productos={carrito}
-              visible={carritoVisible}
-              cerrarCarrito={() => setCarritoVisible(false)}
-              eliminarDelCarrito={eliminarDelCarrito}
-            />
-          </div>
-        </Router>
+              <Route 
+                path="/admin" 
+                element={
+                  <ProtectedRoute requireRole="admin">
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              
+            </Routes>
+          </main>
+          
+          <Footer />
+          
+          <Carrito 
+            productos={carrito}
+            visible={carritoVisible}
+            cerrarCarrito={() => setCarritoVisible(false)}
+            eliminarDelCarrito={eliminarDelCarrito}
+          />
+        </div>
       </CarritoContext.Provider>
     </AuthProvider>
   );
