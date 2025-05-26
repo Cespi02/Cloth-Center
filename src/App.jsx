@@ -24,20 +24,12 @@ function App() {
   const [carrito, setCarrito] = useState([]);
   const [carritoVisible, setCarritoVisible] = useState(false);
   const [busqueda, setBusqueda] = useState('');
-  const [apiDisponible, setApiDisponible] = useState(true);
 
   useEffect(() => {
     cargarProductos();
-    verificarAPI();
   }, []);
 
-  const verificarAPI = async () => {
-    const disponible = await verificarConexionAPI();
-    setApiDisponible(disponible);
-    if (!disponible) {
-      setError('No se pudo conectar con la API. Asegúrate de que JSON Server esté ejecutándose.');
-    }
-  };
+
 
   const cargarProductos = async () => {
     try {
@@ -136,18 +128,6 @@ function App() {
             setBusqueda={setBusqueda}
           />
           
-          {!apiDisponible && (
-            <div className="alert alert-warning mx-3 mt-3" role="alert">
-              <span className="material-icons me-2" style={{ fontSize: '16px', verticalAlign: 'middle' }}>warning</span>
-              <strong>Modo offline:</strong> Usando datos locales. 
-              <button 
-                className="btn btn-link p-0 ms-2" 
-                onClick={reintentarCarga}
-              >
-                Reintentar conexión
-              </button>
-            </div>
-          )}
           
           <main className="flex-grow-1">
             <Routes>

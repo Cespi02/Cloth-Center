@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://api.jsonbin.io/v3/b/6834da038960c979a5a1730e'; // JSON Server
+const API_BASE_URL = 'https://6834dca9cd78db2058bf9164.mockapi.io/api'; // JSON Server
 
 
 const apiRequest = async (endpoint, options = {}) => {
