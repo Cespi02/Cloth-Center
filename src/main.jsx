@@ -6,8 +6,8 @@ import App from './App'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router>
+    <HashRouter>
       <App />
-    </Router>
+    </HashRouter>
   </StrictMode>,
 )
